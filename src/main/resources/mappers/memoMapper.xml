@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.duck.mapper.MemoMapper">
+
+	<insert id="create">
+		insert into sm_memo (memo_name, memo_group, update_date)
+		values (#{memo_name}, #{memo_group}, now())
+	</insert>
+
+	<delete id="delete">
+		delete from sm_memo
+		where memo_id = #{memo_id}
+	</delete>
+
+	<select id="read" resultType="MemoVO">
+		select memo_id, memo_name, reg_date, update_date
+		from sm_memo
+		where memo_id = #{memo_id}
+	</select>
+
+	<update id="update">
+		update sm_memo
+		set memo_name = #{memo_name}
+		where memo_id = #{memo_id}
+	</update>
+
+	<update id="updateGroup">
+		update sm_memo
+		set memo_group = #{memo_group}
+		where memo_id = #{memo_id}
+	</update>
+
+	<select id="readGroup">
+		select memo_group
+		from sm_memo
+		where memo_id = #{memo_id}
+	</select>
+
+	<select id="listPage" resultType="MemoVO">
+		select memo_id, memo_name, reg_date, update_date
+		from sm_memo
+		where memo_id > 0
+		order by update_date desc
+		limit #{page}, 20
+	</select>
+
+	<select id="listCriteria" resultType="MemoVO">
+		select memo_id, memo_name, reg_date, update_date
+		from sm_memo
+		where memo_id > 0
+		order by update_date desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="countPaging" resultType="int">
+		select count(memo_id)
+		from sm_memo
+		where memo_id > 0
+	</select>
+
+	<select id="listSearch" resultType="MemoVO">
+		select memo_id, memo_name, reg_date, update_date
+		from sm_memo 
+		where memo_id > 0
+		order by update_date desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+		select count(memo_id)
+		from sm_memo
+		where memo_id > 0
+	]]>
+	</select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.duck.mapper.FriendMessageMapper">
+
+	<insert id="create">
+		insert into sm_fmessage (friend_from, friend_to)
+		values (#{friend_from}, #{friend_to})
+	</insert>
+	
+	<delete id="delete">
+		delete from sm_friend
+		where friend_id = #{friend_id}
+	</delete>
+
+</mapper>

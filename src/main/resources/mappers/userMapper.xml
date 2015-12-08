@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.duck.mapper.UserMapper">
+
+	<insert id="create">
+		insert into sm_user (user_email, user_name, user_picture, access_path, access_token, access_id)
+		values (#{user_email}, #{user_name}, #{user_picture}, #{access_path}, #{access_token}, #{access_id})
+	</insert>
+	
+	<delete id="delete">
+		delete from sm_user
+		where user_id = #{user_id}
+	</delete>
+	
+	<update id="update">
+		update sm_user
+		set user_picture = #{user_picture}
+		where user_id = #{user_id}
+	</update>
+	
+	<select id="read" resultType="UserVO">
+		select user_email, user_name, user_picture, reg_date
+		from sm_user
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="readFriend">
+		select user_friend
+		from sm_user
+		where user_id = #{user_id}
+	</select>
+	
+	<update id="updateFriend">
+		update sm_user
+		set user_friend = #{user_friend}
+		where user_id = #{user_id}
+	</update>
+
+</mapper>
