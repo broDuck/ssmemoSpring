@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+               http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+               http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd 
+        ">
+ 
+        <context:component-scan base-package="com.pure.test" />
+        <mvc:annotation-driven />
+       
+    <bean id="contentNegotiatingStrategy" class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+               <constructor-arg>
+                       <map>
+                              <entry key="html" value="text/html"/>
+                       </map>
+               </constructor-arg>
+        </bean>
+              
+        <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManager">
+               <constructor-arg ref="contentNegotiatingStrategy"/>
+        </bean>
+                      
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                <property name="order" value="3"/>
+                <property name="prefix" value="/WEB-INF/view/"/>
+                <property name="suffix" value=".jsp"/>
+        </bean>
+       
+ 
+</beans>
