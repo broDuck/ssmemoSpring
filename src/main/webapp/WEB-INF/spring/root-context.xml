@@ -19,10 +19,10 @@
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy">
 		</property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://localhost:3306/SSM">
+			value="jdbc:log4jdbc:mysql://210.118.64.177:3306/SSM">
 		</property>
-		<property name="username" value="duck"></property>
-		<property name="password" value="rhffna12"></property>
+		<property name="username" value="ssmemo"></property>
+		<property name="password" value="123000"></property>
 	</bean>
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
