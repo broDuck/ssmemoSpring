@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		dao.updateFriend(user);
 	}
+	
+	@Override
+	public int readCheck(UserVO user) throws Exception {
+		return dao.check(user);
+	}
 }

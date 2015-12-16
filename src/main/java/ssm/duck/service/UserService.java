@@ -15,5 +15,7 @@ public interface UserService {
 	public UserVO readFriend(Integer user_id) throws Exception;
 	
 	public void modifyFriend(UserVO user) throws Exception;
+	
+	public int readCheck(UserVO user) throws Exception;
 
 }

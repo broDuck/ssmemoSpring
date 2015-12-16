@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -14,7 +14,6 @@
 						function(event) {
 							self.location = "list"
 									+ '${pageMaker.makeQuery(1)}'
-									+ "&searchType="
 									+ $("select option:selected").val()
 									+ "&keyword=" + $("#keywordInput").val();
 						});
@@ -27,30 +26,6 @@
 
 <section class="content">
 	<div class="box-body">
-		<select name="searchType">
-			<option value="n"
-				<c:out value="${cri.searchType == null ? 'selected':'' }"/>>
-				---</option>
-			<option value="t"
-				<c:out value="${cri.searchType eq 't' == null ? 'selected':'' }"/>>
-				Title</option>
-			<option value="c"
-				<c:out value="${cri.searchType eq 'c' == null ? 'selected':'' }"/>>
-				Content</option>
-			<option value="w"
-				<c:out value="${cri.searchType eq 'w' == null ? 'selected':'' }"/>>
-				Writer</option>
-			<option value="tc"
-				<c:out value="${cri.searchType eq 'tc' == null ? 'selected':'' }"/>>
-				Title OR Content</option>
-			<option value="cw"
-				<c:out value="${cri.searchType eq 'cw' == null ? 'selected':'' }"/>>
-				Content OR Writer</option>
-			<option value="tcw"
-				<c:out value="${cri.searchType eq 'tcw' == null ? 'selected':'' }"/>>
-				All</option>
-				
-		</select>
 		
 		<input type="text" name="keyword" id="keywordInput" value="${cri.keyword }">
 		<button type="button" class="btn btn-default" aria-label="Left Align" id="searchBtn">Search

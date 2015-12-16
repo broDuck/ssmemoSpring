@@ -32,6 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
     
   <body class="skin-blue sidebar-mini">
+  
     <div class="wrapper">
       
       <header class="main-header">
@@ -187,7 +188,14 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="#" class="btn btn-default btn-flat sign-out">Sign out</a>
+                      <script>
+  						$(".sign-out").on("click", function() {
+  						console.log("sign out");
+  						gapi.auth.signOut();
+  						window.location.replace("/");
+  						});
+  						</script>
                     </div>
                   </li>
                 </ul>
@@ -203,10 +211,12 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="/resources/dist/img/25-2duck.gif" class="img-circle" alt="User Image" />
+              <img class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <br/><p>DuckHyeong Yoo</p>           
+              <br/><p>
+              ${userVO.user_name }
+              </p>           
 
             </div>
           </div>

@@ -14,4 +14,6 @@ public interface UserDAO {
 	public UserVO readFriend(Integer user_id) throws Exception;
 	
 	public void updateFriend(UserVO vo) throws Exception;
+	
+	public int check(UserVO vo) throws Exception;
 }

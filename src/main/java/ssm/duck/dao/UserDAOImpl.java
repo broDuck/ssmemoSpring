@@ -52,4 +52,9 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		session.update(namespace + ".updateFriend", vo);
 	}
+	
+	@Override
+	public int check(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".check", vo);
+	}
 }
