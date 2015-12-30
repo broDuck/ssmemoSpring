@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.duck.mapper.SaveMapper">
+
+
+  <insert id="create">
+  insert into sm_save (memo_id, save_info)
+  values(#{memo_id}, #{save_info})
+  </insert>
+  
+  <select id="read" resultType="SaveVO">
+  select memo_id, save_info
+  from sm_save
+  where memo_id LIKE #{memo_id}
+  </select>
+  
+  <update id="update">
+  update sm_save
+  set save_info = #{save_info}
+  where memo_id LIKE #{memo_id}
+  </update>
+
+  <select id="exist" resultType="int">
+    select count(memo_id)
+    from sm_save
+    where memo_id LIKE #{memo_id}
+  </select>
+
+</mapper>

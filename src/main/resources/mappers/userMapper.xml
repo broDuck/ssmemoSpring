@@ -5,8 +5,8 @@
 <mapper namespace="ssm.duck.mapper.UserMapper">
 
 	<insert id="create">
-		insert into sm_user (user_name, user_picture, access_id)
-		values (#{user_name}, #{user_picture}, #{access_id})
+		insert into sm_user (user_email, user_name, user_picture, access_id)
+		values (#{user_email}, #{user_name}, #{user_picture}, #{access_id})
 	</insert>
 	
 	<delete id="delete">

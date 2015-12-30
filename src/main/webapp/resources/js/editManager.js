@@ -63,10 +63,16 @@ editManager.prototype.setCanvas = function(pageNum) {
     canvas.style.visibility = "hidden";
     canvas.style.position = "absolute";
 
+    var svg = document.createElement("svg");
+    svg.setAttribute("class", "dragview");
+    svg.style.width = "100px";
+    svg.style.height = "100px";
+    svg.style.position = "absolute";
+    svg.style.border = "2px solid #333";
+    svg.style.zIndex = "1001";
+    canvas.appendChild(svg);
+
     $("#editor").append(canvas);
-
-
-    this.visiblePage = pageNum;
 }
 
 // 미리보기 그려주는 부분
@@ -118,26 +124,10 @@ editManager.prototype.changePage = function(hide, vis) {
     document.getElementById("canvas-" + hide).classList.remove('show');
     document.getElementById("canvas-" + vis).style.visibility = "visible";
     document.getElementById("canvas-" + vis).classList.add('show');
-}
+    addMouseEvents();
 
-editManager.prototype.removeContent = function(index) {
-    var small = document.getElementById("view-" + this.visiblePage);
-    var big = document.getElementById("canvas-" + this.visiblePage);
-
-    small.removeChild(index);
-    big.removeChild(index);
-}
-
-editManager.prototype.addContent = function() {
-    var test = document.createElement("p");
-    test.innerHTML = this.visiblePage + " 추가";
-
-    var test2 = document.createElement("p");
-    test2.innerHTML = this.visiblePage + " 추가";
-
-
-    document.getElementById("canvas-" + this.visiblePage).appendChild(test);
-    document.getElementById("view-" + this.visiblePage).appendChild(test2);
+    this.visiblePage = vis;
+    $('.dragview').hide();
 }
 
 editManager.prototype.addSlide = function() {
@@ -145,4 +135,30 @@ editManager.prototype.addSlide = function() {
 
     this.setThumbnails(this.totalPage);
     this.setCanvas(this.totalPage);
+
+    $(".click").removeClass("click");
+    $("#page-" + this.totalPage).parent().addClass("click");
+
+    this.changePage(this.visiblePage, this.totalPage);
+}
+
+editManager.prototype.save = function (elements, memoId) {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/memo/editPage");
+    document.body.appendChild(form);
+
+    var id =document.createElement("input");
+    id.setAttribute("type", "hidden");
+    id.setAttribute("name", "memo_id");
+    id.setAttribute("value", memoId);
+    form.appendChild(id);
+
+    var element = document.createElement("input");
+    element.setAttribute("type", "hidden");
+    element.setAttribute("name", "save_info");
+    element.setAttribute("value", elements);
+    form.appendChild(element);
+
+    form.submit();
 }

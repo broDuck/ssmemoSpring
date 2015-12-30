@@ -3,13 +3,20 @@ package ssm.duck.domain;
 import java.util.Date;
 
 public class UserVO {
+	private String user_email;
 	private Integer user_id;
 	private String salt;
 	private String user_name;
 	private String user_picture;
 	private String access_id;
 	private Date reg_date;
-	
+
+    public String getUser_email() {
+        return user_email;
+    }
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -46,5 +53,6 @@ public class UserVO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
+
+
 }

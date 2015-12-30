@@ -14,8 +14,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ssm.duck.dao.PageMaker;
 import ssm.duck.domain.MemoVO;
+import ssm.duck.domain.SaveVO;
 import ssm.duck.domain.SearchCriteria;
 import ssm.duck.service.MemoService;
+import ssm.duck.service.SaveService;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/memo/*")
@@ -25,6 +31,9 @@ public class MemoController {
 
 	@Inject
 	private MemoService service;
+
+	@Inject
+	private SaveService saveService;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
@@ -41,10 +50,27 @@ public class MemoController {
 	}
 
 	@RequestMapping(value = "/editPage", method = RequestMethod.GET)
-	public void read(@RequestParam("memo_id") int memo_id, @ModelAttribute("cri") SearchCriteria cri, Model model)
-			throws Exception {
-		model.addAttribute(service.read(memo_id));
+	public void read(@RequestParam(value = "id") String id, Model model) throws Exception {
+		if (saveService.isExist(id) != 0) {
+			model.addAttribute(saveService.read(id));
+		} else {
+			SaveVO vo = new SaveVO();
+			vo.setMemo_id("0");
+			vo.setSave_info("0");
+
+			model.addAttribute(vo);
+		}
 	}
+
+	@RequestMapping(value = "/editPage", method = RequestMethod.POST)
+	public void save(SaveVO save) throws Exception {
+		if (saveService.isExist(save.getMemo_id()) != 0) {
+			saveService.update(save);
+		} else {
+			saveService.regist(save);
+		}
+	}
+
 
 	@RequestMapping(value = "/removePage", method = RequestMethod.POST)
 	public String remove(@RequestParam("memo_id") int memo_id, SearchCriteria cri, RedirectAttributes rttr)
@@ -75,7 +101,7 @@ public class MemoController {
 		rttr.addAttribute("keyword", cri.getKeyword());
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		
-		return "redirect:/memo/lsit";
+		return "redirect:/memo/list";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
