@@ -63,12 +63,14 @@ public class MemoController {
 	}
 
 	@RequestMapping(value = "/editPage", method = RequestMethod.POST)
-	public void save(SaveVO save) throws Exception {
+	public String save(SaveVO save) throws Exception {
 		if (saveService.isExist(save.getMemo_id()) != 0) {
 			saveService.update(save);
 		} else {
 			saveService.regist(save);
 		}
+
+		return "redirect:/memo/editPage?id=" + save.getMemo_id();
 	}
 
 

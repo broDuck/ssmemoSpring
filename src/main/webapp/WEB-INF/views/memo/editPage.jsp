@@ -108,7 +108,7 @@
         </tbody>
     </table>
 </div>
-<!--<svg id="dragview" style="z-index:1000;width:150px;height:100px;border:2px solid #333;"></svg>-->
+
 <!--script 실행 부분-->
 <script>
     // lib 변수
@@ -216,7 +216,9 @@
             if(allElement[i].dName!="text")
             {
                 var element = document.getElementById("ad" + allElement[i].id);
+
                 allElement[i].il = element.style.left.split('px')[0];
+                console.log(allElement[i].il);
                 allElement[i].it = element.style.top.split('px')[0];
                 allElement[i].iw = element.style.width.split('px')[0];
                 allElement[i].ih = element.style.height.split('px')[0];
