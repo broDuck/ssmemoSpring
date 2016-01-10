@@ -18,4 +18,6 @@ public interface UserService {
 	
 	public int readCheck(UserVO user) throws Exception;
 
+	public String readGetId(String access_id) throws Exception;
+
 }

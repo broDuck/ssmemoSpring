@@ -57,4 +57,9 @@ public class UserDAOImpl implements UserDAO {
 	public int check(UserVO vo) throws Exception {
 		return session.selectOne(namespace + ".check", vo);
 	}
+
+	@Override
+	public String getId(String access_id) throws Exception {
+		return session.selectOne(namespace + ".getId", access_id);
+	}
 }

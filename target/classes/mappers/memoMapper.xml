@@ -11,13 +11,18 @@
 
 	<delete id="delete">
 		delete from sm_memo
+		where memo_hash = #{memo_hash}
+	</delete>
+
+	<delete id="deleteGroup">
+		delete from sm_group
 		where memo_id = #{memo_id}
 	</delete>
 
 	<select id="read" resultType="MemoVO">
-		select memo_id, memo_name, reg_date, update_date
+		select memo_id, memo_name, reg_date, update_date, memo_hash, memo_image
 		from sm_memo
-		where memo_id = #{memo_id}
+		where memo_hash = #{memo_hash}
 	</select>
 
 	<update id="update">
@@ -39,11 +44,11 @@
 	</select>
 
 	<select id="listPage" resultType="MemoVO">
-		select memo_id, memo_name, reg_date, update_date
+		select memo_name, reg_date, update_date, memo_hash, memo_image
 		from sm_memo
-		where memo_id > 0
-		order by update_date desc
-		limit #{page}, 20
+		where memo_id in (select memo_id
+							from sm_group
+							where user_id like #{user_id})
 	</select>
 
 	<select id="listCriteria" resultType="MemoVO">
@@ -69,10 +74,8 @@
 	</select>
 
 	<select id="listSearchCount" resultType="int">
-	<![CDATA[
-		select count(memo_id)
+		select memo_id
 		from sm_memo
-		where memo_id > 0
-	]]>
+		where memo_hash = #{memo_hash}
 	</select>
 </mapper>

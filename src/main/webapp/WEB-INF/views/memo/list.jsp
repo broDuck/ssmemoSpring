@@ -138,13 +138,26 @@
 
         <section class="content">
             <div id="thumbnails" class="row">
-
+                <c:forEach items="${list}" var="memoVO">
+                <a href="/memo/editPage?id=${memoVO.memo_hash}">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <div class="thumbnail">
+                            <img src="${memoVO.memo_image}" alt="Generic placeholder thumbnail" style="height:200px;">
+                            <div class="caption">
+                                <h4>${memoVO.memo_name}</h4>
+                                <p>생성일 : <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${memoVO.reg_date}" /></p>
+                                <p>수정일 : <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${memoVO.update_date}" /></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </c:forEach>
             </div>
         </section>
         <script type="text/javascript">
             var clientId = '693226472118-29e1i2dc6v1tmgb1s62dnchd7p45f3r2.apps.googleusercontent.com';
             var apiKey = 'AIzaSyAOuYBpXzbRNU7782XQH2FIoHin5D5CyWQ';
-            var scopes = 'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/drive';
+            var scopes = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me';
             var files;
 
             function handleClientLoad() {
@@ -159,7 +172,7 @@
             function handleAuthResult(authResult) {
                 if (authResult && !authResult.error) {
                     settingUser();
-                    loadDriveApi();
+                    listFiles();
                 } else {
                     alert("로그인 하지 않으셨군요! 로그인 페이지로 이동합니다.");
                     location.href = "http://www.broduck.com";
@@ -199,32 +212,9 @@
                 window.location.replace("/");
             });
 
-
-            // google drive api
-
-            function loadDriveApi() {
-                gapi.client.load('drive', 'v2', listFiles);
-            }
-
             function listFiles() {
-                var request = gapi.client.drive.files.list({
-                    'orderBy': 'modifiedDate',
-                    'q': "title contains 'new'"
-                });
 
-                request.execute(function (resp) {
-                    files = resp.items;
 
-                    if (files && files.length > 0) {
-                        for (var i = files.length - 1; i >= 0; i--) {
-                            var file = files[i];
-                            createThumbnails(file.id, file.thumbnailLink, file.title, file.createdDate, file.modifiedDate);
-                        }
-                    } else {
-                        console.log("no files...");
-                        $("#thumbnails").innerText = "empty";
-                    }
-                });
             }
 
             function createThumbnails(id, src, title, cd, md) {

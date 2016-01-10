@@ -54,40 +54,8 @@
     <div id="tools">
         <!--이름 들어가는 곳-->
         <div id="name">
-            <h2>${memoVO.memo_name}</h2>
+            <h2>이름 들어가야함</h2>
         </div>
-
-        <!--툴 버튼 들어가는 곳-->
-        <div id="tool">
-            <button id="save"><i class="material-icons">picture_as_pdf</i></button>
-            <button id="add-slide"><i class="material-icons">note_add</i></button>
-            <button id="redo"><i class="material-icons">redo</i></button>
-            <button id="undo"><i class="material-icons">undo</i></button>
-            <button id="align-left" onclick="font_left();"><i class="material-icons">format_align_left</i></button>
-            <button id="align-center" onclick="font_senter();"><i class="material-icons">format_align_center</i>
-            </button>
-            <button id="align-right" onclick="font_right();"><i class="material-icons">format_align_right</i></button>
-            <button id="align-full" onclick="font_full();"><i class="material-icons">format_align_justify</i></button>
-            <button id="text"><i class="material-icons">format_shapes</i></button>
-            <!--<button id="text-box"><i class="material-icons">create</i></button>-->
-            <button id="italic" onclick="font_italic();"><i class="material-icons">format_italic</i></button>
-            <button id="underline" onclick="font_underline();"><i class="material-icons">format_underlined</i></button>
-            <button id="bold" onclick="font_bold();"><i class="material-icons">format_bold</i></button>
-            <button id="font-size" onclick="font_size(60,'px');"><i class="material-icons">format_size</i></button>
-            <input type="color" onclick="clickColor(this.value);"
-                   onchange="clickColor(this.value);"
-                   style="width:39px; height:33px;"
-                   id="color"/>
-            <button id="photo"><i class="material-icons">insert_photo</i></button>
-            <button id="triangle"><i class="material-icons">change_history</i></button>
-            <button id="rect"><i class="material-icons">crop_square</i></button>
-            <button id="circle"><i class="material-icons">panorama_fish_eye</i></button>
-            <i class="material-icons">sync</i>
-            <i class="material-icons">done</i>
-            <input type="file" style="display:inline-block;"/>
-
-        </div>
-
     </div>
     <table id="panels">
         <tbody>
@@ -505,7 +473,7 @@
             aliveD[id] = 1;
             $('#canvas-'+showPage).append('<div id ="ad' + id + '" style="z-index:800;"><img id="a' + id +
                     '" src="' +
-                    '${memoVO.memo_image}' +
+                    'test.jpg' +
                     '"/></div>');
             $('#a' + id).css('width', '100%');
             $('#a' + id).css('height', '100%');

@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
 	public int readCheck(UserVO user) throws Exception {
 		return dao.check(user);
 	}
+
+	@Override
+	public String readGetId(String access_id) throws Exception {
+		return dao.getId(access_id);
+	}
 }

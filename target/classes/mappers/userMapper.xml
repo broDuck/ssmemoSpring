@@ -44,4 +44,10 @@
 		where access_id = #{access_id}
 	</select>
 
+	<select id="getId" resultType="String">
+		SELECT access_id
+		from sm_user
+		where access_id = #{access_id}
+	</select>
+
 </mapper>

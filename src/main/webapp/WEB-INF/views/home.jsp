@@ -32,7 +32,7 @@
 <script>
     var clientId = '693226472118-29e1i2dc6v1tmgb1s62dnchd7p45f3r2.apps.googleusercontent.com';
     var apiKey = 'AIzaSyAOuYBpXzbRNU7782XQH2FIoHin5D5CyWQ';
-    var scopes = 'https://www.googleapis.com/auth/drive.metadata.readonly https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/drive';
+    var scopes = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me';
 
     // Use a button to handle authentication the first time.
     function handleClientLoad() {

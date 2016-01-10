@@ -8,7 +8,8 @@ public class MemoVO {
 	private Date reg_date;
 	private Date update_date;
 	private int memo_count;
-	private String memo_group;
+	private String memo_hash;
+	private String memo_image;
 	
 	public Integer getMemo_id() {
 		return memo_id;
@@ -40,16 +41,24 @@ public class MemoVO {
 	public void setMemo_count(int memo_count) {
 		this.memo_count = memo_count;
 	}
-	public String getMemo_group() {
-		return memo_group;
+	public String getMemo_hash() {
+		return memo_hash;
 	}
-	public void setMemo_group(String memo_group) {
-		this.memo_group = memo_group;
+	public void setMemo_hash(String memo_hash) {
+		this.memo_hash = memo_hash;
 	}
-	
+
+	public String getMemo_image() {
+		return memo_image;
+	}
+
+	public void setMemo_image(String memo_image) {
+		this.memo_image = memo_image;
+	}
+
 	@Override
 	public String toString() {
 		return "MemoVO [memo_id=" + memo_id + ", memo_name=" + memo_name + ", reg_date=" + reg_date + ", update_date="
-				+ update_date + ", memo_count=" + memo_count + ", memo_group=" + memo_group + "]";
+				+ update_date + ", memo_count=" + memo_count + "]";
 	}
 }

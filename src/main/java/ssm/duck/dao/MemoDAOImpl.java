@@ -26,9 +26,9 @@ public class MemoDAOImpl implements MemoDAO {
 	}
 
 	@Override
-	public MemoVO read(Integer memo_id) throws Exception {
+	public MemoVO read(String memo_hash) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".read", memo_id);
+		return session.selectOne(namespace + ".read", memo_hash);
 	}
 
 	@Override
@@ -38,19 +38,16 @@ public class MemoDAOImpl implements MemoDAO {
 	}
 
 	@Override
-	public void delete(Integer memo_id) throws Exception {
+	public void delete(String memo_hash) throws Exception {
 		// TODO Auto-generated method stub
-		session.delete(namespace + ".delete", memo_id);
+		session.delete(namespace + ".delete", memo_hash);
 	}
 
 	@Override
-	public List<MemoVO> listPage(int page) throws Exception {
+	public List<MemoVO> listPage(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		if (page <= 0) 	
-			page = 1;
-		page = (page - 1) * 20;
 		
-		return session.selectList(namespace + ".listPage", page);
+		return session.selectList(namespace + ".listPage", user_id);
 	}
 
 	@Override
@@ -72,8 +69,14 @@ public class MemoDAOImpl implements MemoDAO {
 	}
 
 	@Override
-	public int listSearchCount(SearchCriteria cri) throws Exception {
+	public int listSearchCount(String memo_hash) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace + ".listSearchCount", cri);
+		return session.selectOne(namespace + ".listSearchCount", memo_hash);
+	}
+
+	@Override
+	public void deleteGroup(int memo_id) throws Exception {
+		// TODO Auto-generated method stub
+		session.delete(namespace + ".deleteGroup", memo_id);
 	}
 }

@@ -12,11 +12,11 @@ public interface MemoService {
 	
 	public void modify(MemoVO memo) throws Exception;
 	
-	public MemoVO read(Integer memo_id) throws Exception;
+	public MemoVO read(String memo_hash) throws Exception;
 	
-	public void remove(Integer memo_id) throws Exception;
+	public void remove(String memo_hash) throws Exception;
 	
-	public List<MemoVO> listPage(int page) throws Exception;
+	public List<MemoVO> listPage(String user_id) throws Exception;
 	
 	public List<MemoVO> listCriteria(Criteria cri) throws Exception;
 	
@@ -24,5 +24,7 @@ public interface MemoService {
 	
 	public List<MemoVO> listSearchCriteria(SearchCriteria cri) throws Exception;
 	
-	public int listsearchCount(SearchCriteria cri) throws Exception;
+	public int listsearchCount(String cri) throws Exception;
+
+	public void removeGroup(int memo_id) throws Exception;
 }

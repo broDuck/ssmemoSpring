@@ -1,22 +1,17 @@
 
 package ssm.duck.ssmemo;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.inject.Inject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import ssm.duck.domain.UserVO;
 import ssm.duck.service.UserService;
+
+import javax.inject.Inject;
+import java.util.Locale;
 
 /**
  * Handles requests for the application home page.
@@ -49,10 +44,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registPOST(UserVO user, RedirectAttributes rttr) throws Exception {
+	public void registPOST(UserVO user, Model model) throws Exception {
 		logger.info("regist post ...");
-		logger.info(user.toString());
-		
+
 		int count = service.readCheck(user);
 
 		if (count == 0) {
@@ -61,8 +55,6 @@ public class HomeController {
 			logger.info("is duplicate!");
 		}
 
-		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/memo/list";
+		model.addAttribute("user", service.readGetId(user.getAccess_id()));
 	}
-
 }

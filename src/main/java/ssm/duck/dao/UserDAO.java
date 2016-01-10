@@ -16,4 +16,6 @@ public interface UserDAO {
 	public void updateFriend(UserVO vo) throws Exception;
 	
 	public int check(UserVO vo) throws Exception;
+
+	public String getId(String access_id) throws Exception;
 }

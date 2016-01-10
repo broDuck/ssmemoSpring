@@ -24,9 +24,9 @@ public class MemoServiceImpl implements MemoService {
 	}
 
 	@Override
-	public MemoVO read(Integer memo_id) throws Exception {
+	public MemoVO read(String memo_hash) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.read(memo_id);
+		return dao.read(memo_hash);
 	}
 	
 	@Override
@@ -35,15 +35,15 @@ public class MemoServiceImpl implements MemoService {
 	}
 
 	@Override
-	public void remove(Integer memo_id) throws Exception {
+	public void remove(String memo_hash) throws Exception {
 		// TODO Auto-generated method stub
-		dao.delete(memo_id);
+		dao.delete(memo_hash);
 	}
 
 	@Override
-	public List<MemoVO> listPage(int page) throws Exception {
+	public List<MemoVO> listPage(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.listPage(page);
+		return dao.listPage(user_id);
 	}
 
 	@Override
@@ -65,10 +65,15 @@ public class MemoServiceImpl implements MemoService {
 	}
 
 	@Override
-	public int listsearchCount(SearchCriteria cri) throws Exception {
+	public int listsearchCount(String cri) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listSearchCount(cri);
 	}
-	
+
+	@Override
+	public void removeGroup(int memo_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.deleteGroup(memo_id);
+	}
 	
 }
